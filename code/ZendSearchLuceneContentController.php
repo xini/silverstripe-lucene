@@ -40,11 +40,10 @@ class ZendSearchLuceneContentController extends Extension {
 	 * @return  String                      The rendered form, for inclusion into the page template.
 	 */
 	public function ZendSearchLuceneResults($data, $form, $request) {
-//		$querystring = $form->dataFieldByName('Search')->dataValue();
 		$querystring = $form->Fields()->dataFieldByName('Search')->dataValue();
 		$query = Zend_Search_Lucene_Search_QueryParser::parse($querystring);
 		$hits = ZendSearchLuceneWrapper::find($query);
-        $data = $this->getDataArrayFromHits($hits, $request);
+        	$data = $this->getDataArrayFromHits($hits, $request);
 		return $this->owner->customise($data)->renderWith(array('Lucene_results', 'Page'));
 	}
 
