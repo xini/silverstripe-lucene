@@ -6,7 +6,7 @@
  * @package lucene-silverstripe-module
  * @author Darren Inwood <darren.inwood@chrometoaster.com>
  */
-class ZendSearchLuceneCMSDecorator extends LeftAndMainDecorator {
+class ZendSearchLuceneCMSDecorator extends LeftAndMainExtension {
 
     /**
      * Enables the extra button added via ZendSearchLuceneSiteConfig.

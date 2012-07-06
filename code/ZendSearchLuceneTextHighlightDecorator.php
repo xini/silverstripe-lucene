@@ -52,7 +52,7 @@ class ZendSearchLuceneTextHighlightDecorator extends Extension {
             $text = preg_replace("/\b($word)\b/i", '<strong>\1</strong>', $text);
         }
         if ( $addParaTags ) $text = '<p>'.$text.'</p>';
-        return DBField::create('HTMLText', $text, $this->owner->name);
+        return DBField::create_field('HTMLText', $text, $this->owner->name);
     }
 
 }

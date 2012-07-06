@@ -27,7 +27,7 @@
  * @author Darren Inwood <darren.inwood@chrometoaster.com>
  */
 
-class ZendSearchLuceneSearchable extends DataObjectDecorator {
+class ZendSearchLuceneSearchable extends DataExtension {
 
     /**
      * Number of results per pagination page 

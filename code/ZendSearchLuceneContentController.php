@@ -40,7 +40,8 @@ class ZendSearchLuceneContentController extends Extension {
 	 * @return  String                      The rendered form, for inclusion into the page template.
 	 */
 	public function ZendSearchLuceneResults($data, $form, $request) {
-		$querystring = $form->dataFieldByName('Search')->dataValue();
+//		$querystring = $form->dataFieldByName('Search')->dataValue();
+		$querystring = $form->Fields()->dataFieldByName('Search')->dataValue();
 		$query = Zend_Search_Lucene_Search_QueryParser::parse($querystring);
 		$hits = ZendSearchLuceneWrapper::find($query);
         $data = $this->getDataArrayFromHits($hits, $request);
@@ -132,15 +133,15 @@ class ZendSearchLuceneContentController extends Extension {
 		$data = array(
 			'Results' => null,
 			'Query' => null,
-			'Title' => DBField::create('Text', _t('ZendSearchLucene.SearchResultsTitle', 'Search Results')),
+			'Title' => DBField::create_field('Text', _t('ZendSearchLucene.SearchResultsTitle', 'Search Results')),
 			'TotalResults' => null,
 			'TotalPages' => null,
 			'ThisPage' => null,
 			'StartResult' => null,
 			'EndResult' => null,
-			'PrevUrl' => DBField::create('Text', 'false'),
-			'NextUrl' => DBField::create('Text', 'false'),
-			'SearchPages' => new DataObjectSet()
+			'PrevUrl' => DBField::create_field('Text', 'false'),
+			'NextUrl' => DBField::create_field('Text', 'false'),
+			'SearchPages' => new ArrayList()
 		);
 		
         $pageLength = ZendSearchLuceneSearchable::$pageLength;              // number of results per page
@@ -154,7 +155,7 @@ class ZendSearchLuceneContentController extends Extension {
 		if ( $currentPage > $totalPages ) $currentPage = $totalPages;
 
         // Assemble final results after page number mangling
-        $results = new DataObjectSet();
+        $results = new ArrayList();
 		foreach($hits as $k => $hit) {
 		    if ( $k < ($currentPage-1)*$pageLength || $k >= ($currentPage*$pageLength) ) continue;
 			$obj = DataObject::get_by_id($hit->ClassName, $hit->ObjectID);
@@ -169,10 +170,10 @@ class ZendSearchLuceneContentController extends Extension {
 		}
 
 	    $data['Results'] = $results;
-	    $data['Query']   = DBField::create('Text', $request->requestVar('Search'));
-	    $data['TotalResults'] = DBField::create('Text', count($hits));
-        $data['TotalPages'] = DBField::create('Text', $totalPages);
-        $data['ThisPage'] = DBField::create('Text', $currentPage);
+	    $data['Query']   = DBField::create_field('Text', $request->requestVar('Search'));
+	    $data['TotalResults'] = DBField::create_field('Text', count($hits));
+        $data['TotalPages'] = DBField::create_field('Text', $totalPages);
+        $data['ThisPage'] = DBField::create_field('Text', $currentPage);
         $data['StartResult'] = $start + 1;
         $data['EndResult'] = $start + count($results);
 
@@ -193,12 +194,12 @@ class ZendSearchLuceneContentController extends Extension {
 
         // Pagination links
         if ( $currentPage > 1 ) {
-            $data['PrevUrl'] = DBField::create('Text', 
+            $data['PrevUrl'] = DBField::create_field('Text', 
                 build_search_url(array('start' => ($currentPage - 2) * $pageLength))
             );
         }
         if ( $currentPage < $totalPages ) {
-            $data['NextUrl'] = DBField::create('Text', 
+            $data['NextUrl'] = DBField::create_field('Text', 
                 build_search_url(array('start' => $currentPage * $pageLength))
             );
         }

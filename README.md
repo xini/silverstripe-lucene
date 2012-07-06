@@ -1,6 +1,4 @@
-###############################################
-Lucene plugin for SilverStripe 2.4
-###############################################
+## Lucene plugin for SilverStripe 3.0
 
 This plugin for the SilverStripe framework allows you to harness the power of 
 the Lucene search engine on your site.
@@ -18,6 +16,10 @@ Zend_Search_Lucene is a PHP port of the Apache project's Lucene search engine.
 This extension is inspired by the wpSearch plugin for WordPress.
 http://codefury.net/projects/wpSearch/
 
+Modified for SilverStripe 3.0 
+-----------------------------------------------
+Graeme Smith 
+<gs78 (at) me (dot) com>
 
 Maintainer Contact
 -----------------------------------------------
@@ -27,8 +29,8 @@ Darren Inwood
 
 Requirements
 -----------------------------------------------
-SilverStripe 2.4 or newer
-'Queued Jobs' module
+SilverStripe 3.0 or newer
+'Queued Jobs' module for SilverStripe 3.0 or newer - see: https://github.com/nyeholt/silverstripe-queuedjobs/tree/ss3
 
 This module is currently only tested on LAMP - Windows and Mac OS X should work,
 but are untested.

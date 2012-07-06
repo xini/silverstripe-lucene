@@ -10,14 +10,14 @@ class ZendSearchLuceneForm extends Form {
 
     public function __construct($controller) {
 		$searchText = isset($_REQUEST['Search']) ? $_REQUEST['Search'] : '';
-		$fields = Object::create('FieldSet', 
+		$fields = Object::create('FieldList', 
 			Object::create('TextField',
 			    'Search', 
 			    '',
 			    $searchText
 			)
 		);
-		$actions = Object::create( 'FieldSet',
+		$actions = Object::create( 'FieldList',
 			Object::create('FormAction', 'ZendSearchLuceneResults', _t('SearchForm.GO', 'Go'))
 		);
 		parent::__construct($controller, 'ZendSearchLuceneForm', $fields, $actions);
