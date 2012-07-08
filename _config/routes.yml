@@ -1,0 +1,7 @@
+---
+Name: luceneSearchModuleRoutes
+After: framework/routes#coreroutes
+---
+Director:
+   rules:
+      'Lucene' : 'LeftAndMain'

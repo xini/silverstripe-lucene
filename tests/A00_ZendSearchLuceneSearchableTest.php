@@ -4,7 +4,7 @@
 
 class A00_ZendSearchLuceneSearchableTest extends SapphireTest {
 
-    static $fixture_file = 'lucene-silverstripe-plugin/tests/ZendSearchLuceneSearchableTest.yml';
+    static $fixture_file = 'ZendSearchLuceneSearchableTest.yml';
 
     public function testEnable() {
         // test for baddies in _config.php
