@@ -21,6 +21,9 @@ Modified for SilverStripe 3.0
 Graeme Smith 
 <gs78 (at) me (dot) com>
 
+####To Do;
+Tests not working - Status column and Temporary Tables fault
+
 Maintainer Contact
 -----------------------------------------------
 Darren Inwood
