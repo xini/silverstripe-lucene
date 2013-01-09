@@ -124,7 +124,10 @@ class ZendSearchLuceneWrapper {
      *                                  extension, it is not indexed.
      */
     public static function index($object) {
-        if ( ! Object::has_extension($object->ClassName, 'ZendSearchLuceneSearchable') ) {
+
+	$objectClass = $object->ClassName;
+
+	if ( ! $objectClass::has_extension('ZendSearchLuceneSearchable') ) {
             return;
         }
 
@@ -219,7 +222,10 @@ class ZendSearchLuceneWrapper {
      *                                  extension, it is not deleted.
      */
     public static function delete($object) {
-        if ( ! Object::has_extension($object->ClassName, 'ZendSearchLuceneSearchable') ) {
+
+    $objectClass = $object->ClassName;
+
+    if ( ! $objectClass::has_extension('ZendSearchLuceneSearchable') ) {
             return;
         }
         $index = self::getIndex();
@@ -389,7 +395,7 @@ class ZendSearchLuceneWrapper {
         $possibleClasses = ClassInfo::subclassesFor($className);
         $extendedClasses = array();
         foreach( $possibleClasses as $possibleClass ) {
-            if ( Object::has_extension($possibleClass, 'ZendSearchLuceneSearchable') ) {
+            if ( $possibleClass::has_extension('ZendSearchLuceneSearchable') ) {
                 $extendedClasses[] = $possibleClass;
             }
         }

@@ -1,4 +1,4 @@
-## Lucene plugin for SilverStripe 3.0
+## Lucene plugin for SilverStripe 3.0.x and 3.1
 
 This plugin for the SilverStripe framework allows you to harness the power of 
 the Lucene search engine on your site.
@@ -16,7 +16,7 @@ Zend_Search_Lucene is a PHP port of the Apache project's Lucene search engine.
 This extension is inspired by the wpSearch plugin for WordPress.
 http://codefury.net/projects/wpSearch/
 
-Modified for SilverStripe 3.0 
+Modified for SilverStripe 3.0.x and 3.1 
 -----------------------------------------------
 Graeme Smith 
 <gs78 (at) me (dot) com>
@@ -33,7 +33,7 @@ Darren Inwood
 Requirements
 -----------------------------------------------
 SilverStripe 3.0 or newer
-'Queued Jobs' module for SilverStripe 3.0 or newer - see: https://github.com/nyeholt/silverstripe-queuedjobs/tree/ss3
+'Queued Jobs' module for SilverStripe 3.0 or newer - see: https://github.com/nyeholt/silverstripe-queuedjobs
 
 This module is currently only tested on LAMP - Windows and Mac OS X should work,
 but are untested.
@@ -50,16 +50,17 @@ Installation Instructions
 -----------------------------------------------
 
 Check out the archive into the root directory of your project.  This should be 
-the same folder as the 'sapphire' directory.
+the same folder as the 'framework' directory.
 
-Via SVN:
-svn export http://lucene-silverstripe-plugin.googlecode.com/svn/trunk/ lucene
+Via Git:
+git submodule add https://github.com/Instagraeme/silverstripe-lucene lucene
 
 This will create a directory called 'lucene' containing the plugin files.
 
 You will need to have the 'Queued Jobs' module installed in order to use Lucene:
 
-http://www.silverstripe.org/queued-jobs-module/
+Via Git:
+git submodule add https://github.com/nyeholt/silverstripe-queuedjobs queuedjobs
   
 To get queued jobs to run, you also need to add $_FILE_TO_URL_MAPPING to your
 _ss_environment.php file as described in the SilverStripe docs:
