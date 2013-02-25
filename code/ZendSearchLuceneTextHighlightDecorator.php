@@ -48,7 +48,7 @@ class ZendSearchLuceneTextHighlightDecorator extends Extension {
             if ( $first != 0 ) $text = '...' . $text;
         }
         foreach( $words as $word ) {
-            $word = preg_quote($word);
+            $word = preg_quote($word,'/');
             $text = preg_replace("/\b($word)\b/i", '<strong>\1</strong>', $text);
         }
         if ( $addParaTags ) $text = '<p>'.$text.'</p>';
