@@ -414,6 +414,24 @@ class ZendSearchLuceneWrapper {
                         $object->ID
                     );
                 }
+                if ( $object->is_a('SiteTree') && $object->Children()->Count() > 0){
+                    $indexed = self::getChildren($object, $indexed);
+                }
+            }
+        }
+        return $indexed;
+    }
+
+    protected function getChildren($object, $indexed = array()){
+        foreach($object->Children() as $child){
+            if(!array_key_exists($child->ClassName.' '.$child->ID, $indexed)){
+                $indexed[$child->ClassName.' '.$child->ID] = array(
+                    $child->ClassName,
+                    $child->ID
+                );
+            }
+            if($child->Children()->Count() > 0) {
+                $indexed = self::getChildren($child, $indexed);
             }
         }
         return $indexed;
