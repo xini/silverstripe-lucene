@@ -304,7 +304,7 @@ class ZendSearchLuceneSearchable extends DataExtension {
         if ( ! $config ) return;
 
         // Is it a JSON-encoded array?
-        $json = json_decode($config);
+        $json = json_decode($config, true);
         if ( is_array($json) ) $config = $json;
 
         // Is the config bad?
@@ -377,7 +377,8 @@ class ZendSearchLuceneSearchable extends DataExtension {
         $objs = ZendSearchLuceneWrapper::getAllIndexableObjects($this->owner->ClassName);
         ZendSearchLuceneWrapper::delete($this->owner);
         foreach( $objs as $obj ) {
-            if ( ! is_object($obj) ) continue;
+            // $obj is an array with ClassName and ID of the indexable object
+            if ( ! is_array($obj) ) continue;
             if ( ! is_object($this->owner) ) continue;
             if ( $obj[0] == $this->owner->class && $obj[1] == $this->owner->ID ) {
                 ZendSearchLuceneWrapper::index($this->owner);
