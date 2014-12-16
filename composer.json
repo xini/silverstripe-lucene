@@ -1,0 +1,20 @@
+{
+	"name": "Instagraeme/silverstripe-lucene",
+	"description": "Lucene integration for SilverStripe",
+	"type": "silverstripe-module",
+	"keywords": ["silverstripe", "sitesearch", "lucene"],
+	"authors": [{
+		"name": "Graeme Smith",
+		"email": "gs78@me.com"
+	}],
+	"require":
+	{
+		"silverstripe/framework": "3.1.*",
+		"silverstripe/cms": "3.1.*",
+		"composer/installers": "*",
+		"silverstripe/queuedjobs": "*"
+	},
+	"extra": {
+		"installer-name": "lucene"
+	}
+}

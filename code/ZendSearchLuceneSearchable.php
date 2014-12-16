@@ -298,7 +298,7 @@ class ZendSearchLuceneSearchable extends DataExtension {
         // Default to filtering out unpublished and unsearchable SiteTree objects
         $this->classConfig = array(
             'index_filter' => $this->owner->is_a('SiteTree') 
-                ? "\"Status\" = 'Published' AND \"ShowInSearch\" = 1"
+                ? "\"ShowInSearch\" = 1"
                 : ''
         );
         if ( ! $config ) return;

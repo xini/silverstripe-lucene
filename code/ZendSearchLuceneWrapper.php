@@ -422,7 +422,7 @@ class ZendSearchLuceneWrapper {
         return $indexed;
     }
 
-    protected function getChildren($object, $indexed = array()){
+    protected static function getChildren($object, $indexed = array()){
         foreach($object->Children() as $child){
             if(!array_key_exists($child->ClassName.' '.$child->ID, $indexed)){
                 $indexed[$child->ClassName.' '.$child->ID] = array(
