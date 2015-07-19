@@ -1,5 +1,5 @@
 {
-	"name": "Instagraeme/silverstripe-lucene",
+	"name": "instagraeme/silverstripe-lucene",
 	"description": "Lucene integration for SilverStripe",
 	"type": "silverstripe-module",
 	"keywords": ["silverstripe", "sitesearch", "lucene"],
