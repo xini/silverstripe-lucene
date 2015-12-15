@@ -128,7 +128,7 @@ class ZendSearchLuceneContentController extends Extension {
      * @param   SS_HTTPRequest  $request    The request that generated the search
      * @return  Array                       A custom array containing pagination data.
      */
-    protected function getDataArrayFromHits($hits, $request) {
+    public function getDataArrayFromHits($hits, $request) {
 		$data = array(
 			'Results' => null,
 			'Query' => null,
