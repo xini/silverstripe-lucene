@@ -373,6 +373,12 @@ class ZendSearchLuceneSearchable extends DataExtension {
      * Indexes the object after it has been written to the database.
      */
     public function onAfterWrite() {
+        // skip indexing of other pages than current.
+        // otherwise all SiteTree::DependentPages() are newly indexed as well,
+        // which harms performance if there are many internal links to this page
+        if (is_a($this->owner, 'SiteTree') && $this->owner->ID != Controller::curr()->currentPageID()) {
+            return;
+        }
         // Obey index filter rules
         $objs = ZendSearchLuceneWrapper::getAllIndexableObjects($this->owner->ClassName);
         ZendSearchLuceneWrapper::delete($this->owner);
@@ -384,7 +390,6 @@ class ZendSearchLuceneSearchable extends DataExtension {
                 ZendSearchLuceneWrapper::index($this->owner);
             }
         }
-        parent::onAfterWrite();
     }
 
     /**
@@ -392,7 +397,6 @@ class ZendSearchLuceneSearchable extends DataExtension {
      */
     function onAfterDelete() {
         ZendSearchLuceneWrapper::delete($this->owner);
-        parent::onAfterDelete();
     }
 
     /**
