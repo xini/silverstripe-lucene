@@ -125,9 +125,9 @@ class ZendSearchLuceneWrapper {
      */
     public static function index($object) {
 
-	$objectClass = $object->ClassName;
-
-	if ( ! $objectClass::has_extension('ZendSearchLuceneSearchable') ) {
+    	$objectClass = $object->ClassName;
+    
+    	if (!class_exists($objectClass) || !$objectClass::has_extension('ZendSearchLuceneSearchable') ) {
             return;
         }
 
