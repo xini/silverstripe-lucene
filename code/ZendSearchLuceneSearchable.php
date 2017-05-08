@@ -376,7 +376,11 @@ class ZendSearchLuceneSearchable extends DataExtension {
         // skip indexing of other pages than current.
         // otherwise all SiteTree::DependentPages() are newly indexed as well,
         // which harms performance if there are many internal links to this page
-        if (is_a($this->owner, 'SiteTree') && $this->owner->ID != Controller::curr()->currentPageID()) {
+        if (is_a($this->owner, 'SiteTree') 
+            && ($controller = Controller::curr()) 
+            && $controller->hasMethod('currentPageID') 
+            && $this->owner->ID != $controller->currentPageID()
+        ) {
             return;
         }
         // Obey index filter rules
