@@ -15,7 +15,7 @@
  * After this, you can define non-default columns to index for each object by using:
  *
  * <code>
- * Object::add_extension(
+ * SS_Object::add_extension(
  *      'SiteTree',
  *      "ZendSearchLuceneSearchable('Title,MenuTitle,Content,MetaTitle,MetaDescription,MetaKeywords')"
  * );
@@ -115,7 +115,7 @@ class ZendSearchLuceneSearchable extends DataExtension {
     /** 
      * The fields which can be searched for each DataObject class, and indexing
      * info for each field.  This is not public, and should be set by configuring 
-     * the class via the Object::add_extension argument.
+     * the class via the SS_Object::add_extension argument.
      * @access private
      */
     protected $fieldConfig = null;
@@ -129,7 +129,7 @@ class ZendSearchLuceneSearchable extends DataExtension {
 
     /**
      * The config options for this DataObject class.  This is not public, and 
-     * should be set by configuring the class via the Object::add_extension argument.
+     * should be set by configuring the class via the SS_Object::add_extension argument.
      */
     protected $classConfig = null;
 
@@ -142,7 +142,7 @@ class ZendSearchLuceneSearchable extends DataExtension {
 
     /**
      * Called by the system when initialising each instance of the decorated 
-     * class.  The argument comes from the Object::add_extension call in the 
+     * class.  The argument comes from the SS_Object::add_extension call in the 
      * project's _config.php file.
      *
      * Field configuration can simply be a comma-separated list of fieldnames to scan,
@@ -352,16 +352,16 @@ class ZendSearchLuceneSearchable extends DataExtension {
 		if(!is_array($searchableClasses)) $searchableClasses = array($searchableClasses);
 		foreach($searchableClasses as $class) {
 			if(isset(self::$defaultColumns[$class])) {
-				Object::add_extension($class, "ZendSearchLuceneSearchable('".self::$defaultColumns[$class]."')");
+				SS_Object::add_extension($class, "ZendSearchLuceneSearchable('".self::$defaultColumns[$class]."')");
 			} else {
 				user_error("I don't know the default search columns for class '$class'");
 				return;
 			}
 		}
-		Object::add_extension('ContentController', 'ZendSearchLuceneContentController');
+		SS_Object::add_extension('ContentController', 'ZendSearchLuceneContentController');
 		DataObject::add_extension('SiteConfig', 'ZendSearchLuceneSiteConfig');
-		Object::add_extension('LeftAndMain', 'ZendSearchLuceneCMSDecorator');
-		Object::add_extension('StringField', 'ZendSearchLuceneTextHighlightDecorator');
+		SS_Object::add_extension('LeftAndMain', 'ZendSearchLuceneCMSDecorator');
+		SS_Object::add_extension('StringField', 'ZendSearchLuceneTextHighlightDecorator');
 		// Set up default encoding and analyzer
         Zend_Search_Lucene_Search_QueryParser::setDefaultEncoding(ZendSearchLuceneSearchable::$encoding);
         Zend_Search_Lucene_Analysis_Analyzer::setDefault( 
