@@ -26,7 +26,7 @@ class ZendSearchLuceneContentController extends Extension {
 	 * @return  Form    A Form object representing the search form.
 	 */
 	public function ZendSearchLuceneForm() {
-		return Object::create('ZendSearchLuceneForm', $this->owner);
+		return SS_Object::create('ZendSearchLuceneForm', $this->owner);
 	}
 
 	/**
@@ -68,7 +68,7 @@ class ZendSearchLuceneContentController extends Extension {
         // Use the same CSS as the stock search form...
         $form->setHTMLId('SearchForm_SearchForm');
 		$actions = $form->Actions();
-		$action = Object::create( 'FormAction', 'results', _t('SearchForm.GO', 'Go'));
+		$action = SS_Object::create( 'FormAction', 'results', _t('SearchForm.GO', 'Go'));
 		$action->setForm($form);
 		$actions->replaceField('action_ZendSearchLuceneResults', $action);
         return $form->renderWith(array(
